@@ -1,136 +1,65 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
   <defs>
-    <!-- Core gradients -->
-    <linearGradient id="frame" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1a1a2e"/>
-      <stop offset="100%" style="stop-color:#16213e"/>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29"/>
+      <stop offset="50%" style="stop-color:#302b63"/>
+      <stop offset="100%" style="stop-color:#24243e"/>
     </linearGradient>
-    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#e94560"/>
-      <stop offset="50%" style="stop-color:#0f3460"/>
-      <stop offset="100%" style="stop-color:#53d8fb"/>
+    <linearGradient id="qubit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d2ff"/>
+      <stop offset="100%" style="stop-color:#7b2ff7"/>
     </linearGradient>
-    <linearGradient id="decay" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#e94560"/>
-      <stop offset="40%" style="stop-color:#53d8fb"/>
-      <stop offset="100%" style="stop-color:#53d8fb;stop-opacity:0.2"/>
+    <linearGradient id="pulse" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d2ff;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#7b2ff7;stop-opacity:0.8"/>
     </linearGradient>
-    <linearGradient id="level0" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#53d8fb"/>
-      <stop offset="100%" style="stop-color:#53d8fb;stop-opacity:0.4"/>
-    </linearGradient>
-    <linearGradient id="level1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#e94560"/>
-      <stop offset="100%" style="stop-color:#e94560;stop-opacity:0.4"/>
-    </linearGradient>
-    <linearGradient id="transition" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" style="stop-color:#53d8fb"/>
-      <stop offset="100%" style="stop-color:#e94560"/>
-    </linearGradient>
-
-    <!-- Filters -->
-    <filter id="glow-cyan">
+    <filter id="glow">
       <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feFlood flood-color="#53d8fb" flood-opacity="0.6" result="color"/>
-      <feComposite in="color" in2="blur" operator="in" result="glow"/>
-      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
-    <filter id="glow-red">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feFlood flood-color="#e94560" flood-opacity="0.6" result="color"/>
-      <feComposite in="color" in2="blur" operator="in" result="glow"/>
-      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
-    <filter id="soft-glow">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-
-    <!-- Clip for the inner circle content -->
-    <clipPath id="inner-clip">
-      <circle cx="200" cy="185" r="108"/>
-    </clipPath>
   </defs>
 
   <!-- Background -->
-  <rect width="400" height="400" rx="32" fill="url(#frame)"/>
+  <rect width="400" height="400" rx="40" fill="url(#bg)"/>
 
-  <!-- Subtle grid texture -->
-  <g opacity="0.04" stroke="#53d8fb" stroke-width="0.5">
-    <line x1="0" y1="80" x2="400" y2="80"/>
-    <line x1="0" y1="160" x2="400" y2="160"/>
-    <line x1="0" y1="240" x2="400" y2="240"/>
-    <line x1="0" y1="320" x2="400" y2="320"/>
-    <line x1="80" y1="0" x2="80" y2="400"/>
-    <line x1="160" y1="0" x2="160" y2="400"/>
-    <line x1="240" y1="0" x2="240" y2="400"/>
-    <line x1="320" y1="0" x2="320" y2="400"/>
+  <!-- Bloch sphere wireframe -->
+  <g transform="translate(200,185)" opacity="0.25" stroke="#00d2ff" fill="none" stroke-width="1">
+    <ellipse rx="95" ry="95"/>
+    <ellipse rx="95" ry="30"/>
+    <ellipse rx="30" ry="95"/>
+    <line x1="0" y1="-95" x2="0" y2="95"/>
   </g>
 
-  <!-- Outer ring -->
-  <circle cx="200" cy="185" r="120" fill="none" stroke="url(#ring)" stroke-width="2.5" opacity="0.7"/>
-  <circle cx="200" cy="185" r="112" fill="none" stroke="#53d8fb" stroke-width="0.5" opacity="0.15"/>
-
-  <!-- Tick marks on ring (like a scientific instrument) -->
-  <g stroke="#53d8fb" stroke-width="1" opacity="0.3">
-    <line x1="200" y1="63" x2="200" y2="70"/>
-    <line x1="200" y1="300" x2="200" y2="307"/>
-    <line x1="78" y1="185" x2="85" y2="185"/>
-    <line x1="315" y1="185" x2="322" y2="185"/>
-    <!-- 45 degree marks -->
-    <line x1="114" y1="99" x2="119" y2="104"/>
-    <line x1="286" y1="99" x2="281" y2="104"/>
-    <line x1="114" y1="271" x2="119" y2="266"/>
-    <line x1="286" y1="271" x2="281" y2="266"/>
+  <!-- Qubit state arrow -->
+  <g filter="url(#glow)">
+    <line x1="200" y1="185" x2="248" y2="110" stroke="url(#qubit)" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="248" cy="110" r="6" fill="#00d2ff"/>
+    <circle cx="200" cy="185" r="4" fill="#7b2ff7" opacity="0.8"/>
   </g>
 
-  <!-- Energy levels diagram (left side of circle) -->
-  <g clip-path="url(#inner-clip)">
+  <!-- |0> and |1> labels -->
+  <text x="200" y="78" text-anchor="middle" fill="#00d2ff" font-family="monospace" font-size="16" opacity="0.7">|0></text>
+  <text x="200" y="298" text-anchor="middle" fill="#7b2ff7" font-family="monospace" font-size="16" opacity="0.7">|1></text>
 
-    <!-- |1⟩ energy level -->
-    <line x1="130" y1="120" x2="195" y2="120" stroke="url(#level1)" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-red)"/>
-
-    <!-- |0⟩ energy level -->
-    <line x1="130" y1="250" x2="195" y2="250" stroke="url(#level0)" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-cyan)"/>
-
-    <!-- Transition arrow |0⟩ → |1⟩ -->
-    <line x1="162" y1="242" x2="162" y2="130" stroke="url(#transition)" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
-    <!-- Arrow head -->
-    <path d="M157,135 L162,123 L167,135" fill="none" stroke="#e94560" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-
-    <!-- Wavy photon symbol on the transition -->
-    <path d="M170,190 Q174,183 178,190 Q182,197 186,190 Q190,183 194,190" fill="none" stroke="#e94560" stroke-width="1.2" opacity="0.5"/>
-
-    <!-- T1 decay curve (right side) -->
-    <g filter="url(#soft-glow)">
-      <path d="M210,120 C220,120 225,125 235,140 C245,155 250,175 260,200 C270,225 275,240 285,248 L285,250"
-            fill="none" stroke="url(#decay)" stroke-width="2.5" stroke-linecap="round"/>
-    </g>
-
-    <!-- Dashed baseline for T1 -->
-    <line x1="210" y1="250" x2="285" y2="250" stroke="#53d8fb" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.4"/>
-
-    <!-- Data points on T1 curve -->
-    <circle cx="215" cy="122" r="2.5" fill="#e94560" opacity="0.9"/>
-    <circle cx="230" cy="132" r="2.5" fill="#c83a55" opacity="0.8"/>
-    <circle cx="245" cy="158" r="2.5" fill="#9e4a6a" opacity="0.7"/>
-    <circle cx="258" cy="198" r="2.5" fill="#6a7a9e" opacity="0.7"/>
-    <circle cx="270" cy="230" r="2.5" fill="#53a8cb" opacity="0.6"/>
-    <circle cx="280" cy="245" r="2.5" fill="#53d8fb" opacity="0.5"/>
-
-    <!-- Labels -->
-    <text x="126" y="117" fill="#e94560" font-family="'SF Mono', 'Fira Code', monospace" font-size="11" opacity="0.8">|1⟩</text>
-    <text x="125" y="256" fill="#53d8fb" font-family="'SF Mono', 'Fira Code', monospace" font-size="11" opacity="0.8">|0⟩</text>
-
-    <!-- T1 label with arrow -->
-    <text x="243" y="268" fill="#53d8fb" font-family="'SF Mono', 'Fira Code', monospace" font-size="10" font-weight="bold" opacity="0.6">T1</text>
-
+  <!-- T1 decay curve (bottom) -->
+  <g transform="translate(60,310)" filter="url(#softglow)">
+    <path d="M0,0 Q30,-25 60,-22 Q90,-18 120,-12 Q150,-7 180,-3 Q210,-1 240,0 L280,0"
+          stroke="url(#pulse)" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- axis -->
+    <line x1="0" y1="5" x2="280" y2="5" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+    <line x1="0" y1="5" x2="0" y2="-30" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
   </g>
-
-  <!-- Center dot -->
-  <circle cx="200" cy="185" r="2" fill="#53d8fb" opacity="0.4"/>
 
   <!-- Title -->
-  <text x="200" y="348" text-anchor="middle" fill="#ffffff" font-family="'SF Mono', 'Fira Code', Consolas, monospace" font-size="13" font-weight="bold" letter-spacing="6" opacity="0.9">QUBIT</text>
-  <text x="200" y="370" text-anchor="middle" fill="#53d8fb" font-family="'SF Mono', 'Fira Code', Consolas, monospace" font-size="9" letter-spacing="5" opacity="0.5">CHARACTERIZE</text>
+  <text x="200" y="370" text-anchor="middle" fill="white" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" letter-spacing="4" opacity="0.85">QUBIT CHARACTERIZE</text>
 </svg>
