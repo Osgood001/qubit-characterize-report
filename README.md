@@ -21,6 +21,8 @@ This report documents a **complete qubit characterization run on real supercondu
 
 **This is not a simulation.** Every plot below comes from real microwave measurements on a physical device.
 
+**Note on difficulty:** The chip used in this run has notably poor SNR — the qubit-cavity dispersive shift is small, readout visibility is low (~4%), and spectroscopy signals are barely above noise. This represents a **worst-case scenario** for automated calibration. On a typical chip with standard SNR, each step would show much cleaner signals and the full pipeline would run with significantly less effort.
+
 The characterization was performed using the [`qubit-characterize`](https://github.com/Osgood001/qubit-characterize) skill/toolkit. The **Agent Run** was executed by an AI agent following the skill instructions, while the **Human Run** is a previous manual calibration used as the ground-truth reference.
 
 ---
