@@ -155,6 +155,10 @@ The key insight: **the readout amplitude that maximizes raw IQ magnitude is NOT 
 
 ---
 
+## Session Log
+
+The full, unedited session log (from init through T1 measurement) is available at [`session-log.txt`](session-log.txt) — 6400 lines of authentic agent-hardware interaction. Sensitive credentials have been redacted.
+
 ## Hardware Details
 
 - **Platform:** Superconducting transmon qubit
