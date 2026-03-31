@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29"/>
+      <stop offset="50%" style="stop-color:#302b63"/>
+      <stop offset="100%" style="stop-color:#24243e"/>
+    </linearGradient>
+    <linearGradient id="qubit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d2ff"/>
+      <stop offset="100%" style="stop-color:#7b2ff7"/>
+    </linearGradient>
+    <linearGradient id="pulse" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d2ff;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#7b2ff7;stop-opacity:0.8"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" rx="40" fill="url(#bg)"/>
+
+  <!-- Bloch sphere wireframe -->
+  <g transform="translate(200,185)" opacity="0.25" stroke="#00d2ff" fill="none" stroke-width="1">
+    <ellipse rx="95" ry="95"/>
+    <ellipse rx="95" ry="30"/>
+    <ellipse rx="30" ry="95"/>
+    <line x1="0" y1="-95" x2="0" y2="95"/>
+  </g>
+
+  <!-- Qubit state arrow -->
+  <g filter="url(#glow)">
+    <line x1="200" y1="185" x2="248" y2="110" stroke="url(#qubit)" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="248" cy="110" r="6" fill="#00d2ff"/>
+    <circle cx="200" cy="185" r="4" fill="#7b2ff7" opacity="0.8"/>
+  </g>
+
+  <!-- |0> and |1> labels -->
+  <text x="200" y="78" text-anchor="middle" fill="#00d2ff" font-family="monospace" font-size="16" opacity="0.7">|0></text>
+  <text x="200" y="298" text-anchor="middle" fill="#7b2ff7" font-family="monospace" font-size="16" opacity="0.7">|1></text>
+
+  <!-- T1 decay curve (bottom) -->
+  <g transform="translate(60,310)" filter="url(#softglow)">
+    <path d="M0,0 Q30,-25 60,-22 Q90,-18 120,-12 Q150,-7 180,-3 Q210,-1 240,0 L280,0"
+          stroke="url(#pulse)" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- axis -->
+    <line x1="0" y1="5" x2="280" y2="5" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+    <line x1="0" y1="5" x2="0" y2="-30" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  </g>
+
+  <!-- Title -->
+  <text x="200" y="370" text-anchor="middle" fill="white" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" letter-spacing="4" opacity="0.85">QUBIT CHARACTERIZE</text>
+</svg>
